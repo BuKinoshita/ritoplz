@@ -2,8 +2,6 @@
 
 import React from 'react'
 import { style } from 'next/css'
-import getTier from 'ritoplz-tier'
-import { Line } from 'rc-progress'
 
 const styles = {
   rankingItem: {

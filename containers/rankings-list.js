@@ -105,8 +105,8 @@ class RankingsList extends Component {
           <Filter fetchRankings={this.props.fetchRankings} summoners={this.state.summoners}/>
 
           <nav className={style(styles.tabs)}>
-            <span className={style(styles.tab)} onClick={node => this.changeList('ranked')}>Ranked</span>
-            <span className={style(styles.tab)} onClick={node => this.changeList('unranked')}>Unranked</span>
+            <span className={style(styles.tab)} onClick={() => this.changeList('ranked')}>Ranked</span>
+            <span className={style(styles.tab)} onClick={() => this.changeList('unranked')}>Unranked</span>
           </nav>
 
           {list}

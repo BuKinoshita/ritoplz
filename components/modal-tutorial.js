@@ -102,7 +102,7 @@ class ModalTutorial extends Component {
     this.setState({modalStatus: false})
   }
 
-  setCookie (e) {
+  setCookie () {
     this.setState({checker: !this.state.checker})
     setTimeout(() => toggleTutorial(this.state.checker), 1)
   }
@@ -143,7 +143,7 @@ class ModalTutorial extends Component {
 
           <div>
             <h1 className={style(styles.title)}>Confirm your summoner</h1>
-            <h2 className={style(styles.subtitle)}>After creating your mastery page with the code, you need to confirm your summoner by clicking "confirm summoner" above your summoner card</h2>
+            <h2 className={style(styles.subtitle)}>After creating your mastery page with the code, you need to confirm your summoner by clicking confirm summoner above your summoner card</h2>
 
             <img className={style(styles.slickImage)} src="static/confirm.svg" alt=""/>
 

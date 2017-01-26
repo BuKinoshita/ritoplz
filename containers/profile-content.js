@@ -3,7 +3,6 @@
 /* @flow */
 
 import React, { Component } from 'react'
-import { style } from 'next/css'
 import { connect } from 'react-redux'
 import Alert from 'react-s-alert'
 

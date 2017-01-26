@@ -7,19 +7,16 @@ import { style } from 'next/css'
 import Slider from 'react-slick'
 
 import fetchAccount from '../actions/fetch-account'
-import editUser from './../actions/edit-user'
-import addSummoner from './../actions/add-summoner'
 import confirmSummoner from '../actions/confirm-summoner'
 import { countries, locations } from '../services/places'
+import editUser from './../actions/edit-user'
+import addSummoner from './../actions/add-summoner'
 import {
   EDIT_USER_SUCCESS,
   EDIT_USER_ERROR,
   ADD_SUMMONER_SUCCESS,
   ADD_SUMMONER_ERROR,
-  CONFIRM_SUMMONER_SUCCESS,
-  CONFIRM_SUMMONER_ERROR,
-  ACCOUNT_SUCCESS,
-  ACCOUNT_ERROR
+  ACCOUNT_SUCCESS
 } from './../constants'
 
 const styles = {
@@ -182,14 +179,14 @@ class Onboard extends Component {
   constructor () {
     super()
 
-    this.nextSlide = this.nextSlide.bind(this)
-    this.previousSlide = this.previousSlide.bind(this)
+    this.handleNextSlide = this.handleNextSlide.bind(this)
+    this.handlePreviousSlide = this.handlePreviousSlide.bind(this)
     this.submitLocation = this.submitLocation.bind(this)
     this.submitSummoner = this.submitSummoner.bind(this)
     this.handleCountry = this.handleCountry.bind(this)
     this.handleState = this.handleState.bind(this)
     this.handleCity = this.handleCity.bind(this)
-    this.confirmSummoner = this.confirmSummoner.bind(this)
+    this.handleConfirmSummoner = this.handleConfirmSummoner.bind(this)
 
     this.state = {
       countryList: countries,
@@ -203,11 +200,11 @@ class Onboard extends Component {
     }
   }
 
-  nextSlide () {
+  handleNextSlide () {
     this.slider.slickNext()
   }
 
-  previousSlide () {
+  handlePreviousSlide () {
     this.slider.slickPrev()
   }
 
@@ -241,7 +238,7 @@ class Onboard extends Component {
     this.props.editUser(userData)
       .then(({ data, type }) => {
         if (type === EDIT_USER_SUCCESS) {
-          this.nextSlide()
+          this.handleNextSlide()
         }
 
         if (type === EDIT_USER_ERROR) {
@@ -256,7 +253,7 @@ class Onboard extends Component {
     this.props.addSummoner(summoner)
       .then(({ data, type }) => {
         if (type === ADD_SUMMONER_SUCCESS) {
-          this.nextSlide()
+          this.handleNextSlide()
           this.setState({code: data.code})
           this.props.fetchAccount()
             .then(({ data, type }) => {
@@ -272,10 +269,10 @@ class Onboard extends Component {
       })
   }
 
-  confirmSummoner () {
+  handleConfirmSummoner () {
     const summoner = this.state.account.summoners[0].name
     this.props.confirmSummoner(summoner)
-      .then(({ data, type }) => {
+      .then(({ data }) => {
         if (data) {
           this.props.routing.url.pushTo('/profile')
         } else {
@@ -295,14 +292,14 @@ class Onboard extends Component {
     }
 
     return (
-      <Slider ref={c => this.slider = c } {...settings}>
+      <Slider ref={c => this.slider = c} {...settings}>
         <div>
           <img className={style(styles.slickImage)} src="static/placeholder.svg" alt=""/>
 
           <h1 className={style(styles.title)}>Welcome to Ritoplz</h1>
           <h2 className={style(styles.subtitle)}>We will guide you to configure your account</h2>
 
-          <button className={style(styles.btnNext)} onClick={this.nextSlide}>Next</button>
+          <button className={style(styles.btnNext)} onClick={this.handleNextSlide}>Next</button>
         </div>
 
         <div>
@@ -326,7 +323,7 @@ class Onboard extends Component {
             </fieldset>
           </div>
 
-          <button className={style(styles.btnPrev)} onClick={this.previousSlide}>Previous</button>
+          <button className={style(styles.btnPrev)} onClick={this.handlePreviousSlide}>Previous</button>
           <button className={style(styles.btnNext)} onClick={this.submitLocation}>Next</button>
         </div>
 
@@ -343,7 +340,7 @@ class Onboard extends Component {
             </div>
           </div>
 
-          <button className={style(styles.btnPrev)} onClick={this.previousSlide}>Previous</button>
+          <button className={style(styles.btnPrev)} onClick={this.handlePreviousSlide}>Previous</button>
           <button className={style(styles.btnNext)} onClick={this.submitSummoner}>Next</button>
         </div>
 
@@ -364,7 +361,7 @@ class Onboard extends Component {
 
               <li className={style(styles.step)}>
                 <span className={style(styles.stepNumber)}>Step 2.</span>
-                <span className={style(styles.stepText)}>Use this code ("{this.state.code}") as the page name</span>
+                <span className={style(styles.stepText)}>Use this code ({this.state.code}) as the page name</span>
               </li>
 
               <li className={style(styles.step)}>
@@ -379,8 +376,8 @@ class Onboard extends Component {
             <button className={style(styles.codeBtn)}>Your code</button>
           </div>
 
-          <button className={style(styles.btnPrev)} onClick={this.previousSlide}>Previous</button>
-          <button className={style(styles.btnNext)} onClick={this.confirmSummoner}>Confirm Summoner</button>
+          <button className={style(styles.btnPrev)} onClick={this.handlePreviousSlide}>Previous</button>
+          <button className={style(styles.btnNext)} onClick={this.handleConfirmSummoner}>Confirm Summoner</button>
         </div>
       </Slider>
     )
@@ -390,7 +387,7 @@ class Onboard extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     fetchAccount: () => dispatch(fetchAccount()),
-    editUser: (user) => dispatch(editUser(user)),
+    editUser: user => dispatch(editUser(user)),
     addSummoner: summoner => dispatch(addSummoner(summoner)),
     confirmSummoner: summoner => dispatch(confirmSummoner(summoner))
   }

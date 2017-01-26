@@ -177,7 +177,7 @@ class ModalAddLocation extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    editUser: (user) => dispatch(editUser(user)),
+    editUser: user => dispatch(editUser(user)),
     fetchAccount: () => dispatch(fetchAccount())
   }
 }

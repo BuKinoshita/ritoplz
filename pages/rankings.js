@@ -1,30 +1,16 @@
 'use strict'
 
 import React, { Component } from 'react'
-import { style } from 'next/css'
 import { Provider } from 'react-redux'
 
 import Meta from '../components/meta'
 import Footer from '../components/footer'
-import configureStore from '../store/configureStore'
+import configureStore from '../store/configure-store'
 import Header from './../components/header'
 import RankingsList from './../containers/rankings-list'
 import { isLogged } from './../services/auth'
 
 const store = configureStore()
-
-const styles = {
-  row: {
-    maxWidth: '900px',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-
-    '@media (max-width: 750px)': {
-      paddingLeft: '20px',
-      paddingRight: '20px'
-    }
-  }
-}
 
 class Rankings extends Component {
   constructor() {
@@ -34,7 +20,7 @@ class Rankings extends Component {
   }
 
   render () {
-    let items = []
+    const items = []
 
     if (isLogged()) {
       const item = {name: 'Profile', link: 'profile', type: 'button'}
@@ -51,11 +37,20 @@ class Rankings extends Component {
 
           <Header items={items}/>
 
-          <section className={style(styles.row)}>
+          <section className="row">
             <RankingsList/>
           </section>
 
           <Footer/>
+
+          <style jsx>{`
+            .row {
+              max-width: 900px;
+              margin-left: auto;
+              margin-right: auto;
+            }
+          `}
+          </style>
         </div>
       </Provider>
     )

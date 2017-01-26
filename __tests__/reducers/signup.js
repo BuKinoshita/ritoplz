@@ -1,3 +1,5 @@
+/* global it, expect, describe */
+
 import {
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,

@@ -3,6 +3,12 @@
 import React from 'react'
 import Head from 'next/head'
 import { insertRule } from 'next/css'
+import NProgress from 'nprogress'
+import Router from 'next/router'
+
+Router.onRouteChangeStart = () => NProgress.start()
+Router.onRouteChangeComplete = () => NProgress.done()
+Router.onRouteChangeError = () => NProgress.done()
 
 export default () => (
   <div>
@@ -30,10 +36,10 @@ export default () => (
       <link rel="stylesheet" href="/static/stylesheets/vendors/alert/alert.css"/>
       <link rel="stylesheet" href="https://unpkg.com/react-select/dist/react-select.css"/>
       <link rel="stylesheet" href="/static/stylesheets/vendors/react-select/react-select.css"/>
-      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
-      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
-      <script src="static/drift.js"></script>
-      <script src="static/analytics.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"/>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"/>
+      <script src="static/drift.js"/>
+      <script src="static/analytics.js"/>
 
       <link rel="apple-touch-icon" sizes="57x57" href="static/apple-icon-57x57.png"/>
       <link rel="apple-touch-icon" sizes="60x60" href="static/apple-icon-60x60.png"/>
@@ -44,12 +50,59 @@ export default () => (
       <link rel="apple-touch-icon" sizes="144x144" href="static/apple-icon-144x144.png"/>
       <link rel="apple-touch-icon" sizes="152x152" href="static/apple-icon-152x152.png"/>
       <link rel="apple-touch-icon" sizes="180x180" href="static/apple-icon-180x180.png"/>
-      <link rel="icon" type="image/png" sizes="192x192"  href="static/android-icon-192x192.png"/>
+      <link rel="icon" type="image/png" sizes="192x192" href="static/android-icon-192x192.png"/>
       <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png"/>
       <link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png"/>
       <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png"/>
     </Head>
+
+    <style jsx global>{`
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: Open Sans, Helvetica Neue, Helvetica
+      }
+
+      li {
+        list-style: none
+      }
+
+      a {
+        text-decoration: none
+      }
+
+      svg,
+      img {
+        vertical-align: middle;
+      }
+
+      #nprogress {
+        pointer-events: none;
+      }
+
+      #nprogress .bar {
+        background: #ff9300;
+        position: fixed;
+        z-index: 1031;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+      }
+
+      #nprogress .peg {
+        display: block;
+        position: absolute;
+        right: 0px;
+        width: 100px;
+        height: 100%;
+        box-shadow: 0 0 10px #ff9300, 0 0 5px #ff9300;
+        opacity: 1.0;
+        transform: rotate(3deg) translate(0px, -4px);
+      }
+    `}</style>
   </div>
 )
 
-insertRule('* {padding: 0; margin: 0; box-sizing: border-box; font-family: Source Sans Pro, Helvetica Neue, Helvetica } li { list-style: none } a { text-decoration: none}')
+insertRule('')

@@ -9,12 +9,12 @@ import {
 const initialState = {
   requesting: false,
   requested: false,
-  data: '',
+  data: {},
   error: null
 }
 
-export default (state = initialState, action) => {
-  switch (action.type) {
+export default (state = initialState, { type, data }) => {
+  switch (type) {
     case CONFIRM_SUMMONER_REQUEST:
       return {
         ...state,
@@ -26,14 +26,14 @@ export default (state = initialState, action) => {
         ...state,
         requesting: false,
         requested: true,
-        data: action.data
+        data
       }
 
     case CONFIRM_SUMMONER_ERROR:
       return {
         ...state,
         requesting: false,
-        error: action.data
+        error: data
       }
 
     default:

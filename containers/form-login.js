@@ -3,7 +3,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { style } from 'next/css'
-import cookie from 'react-cookie'
 import Alert from 'react-s-alert'
 
 import loginRequest from '../actions/login'

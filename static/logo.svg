@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="86px" height="36px" viewBox="0 0 86 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Dashboard" transform="translate(-80.000000, -29.000000)" fill="#FFFFFF">
+            <g id="Content" transform="translate(80.000000, 30.000000)">
+                <g id="Header">
+                    <g id="logo">
+                        <text id="Ritoplz" font-family="OpenSans-Semibold, Open Sans" font-size="14" font-weight="500">
+                            <tspan x="40" y="23">Ritoplz</tspan>
+                        </text>
+                        <polygon points="15.4089052 -0.507793327 30.8178104 8.37110334 20.6704277 17.2301015 30.8178104 26.1288967 15.4089052 35.0077933 8.87617621e-15 26.1288967 -9.60533563e-16 8.37110334"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

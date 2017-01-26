@@ -1,13 +1,13 @@
 /* global it, expect, describe */
 
 import {
-  LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_ERROR
+  ADD_SUMMONER_REQUEST,
+  ADD_SUMMONER_SUCCESS,
+  ADD_SUMMONER_ERROR
 } from '../../constants'
-import reducer from '../../reducers/login'
+import reducer from '../../reducers/add-summoner'
 
-describe('login reducer', () => {
+describe('add summoner reducer', () => {
   it('should return the initial state', () => {
     expect(
       reducer(undefined, {})
@@ -19,47 +19,45 @@ describe('login reducer', () => {
     })
   })
 
-  it('should handle LOGIN_REQUEST', () => {
+  it('should handle ADD_SUMMONER_REQUEST', () => {
     expect(
       reducer([], {
-        type: LOGIN_REQUEST
+        type: ADD_SUMMONER_REQUEST
       })
     ).toEqual({
       requesting: true
     })
   })
 
-  it('should handle LOGIN_SUCCESS', () => {
+  it('should handle ADD_SUMMONER_SUCCESS', () => {
     expect(
       reducer([], {
-        type: LOGIN_SUCCESS,
+        type: ADD_SUMMONER_SUCCESS,
         data: {
-          token: 'token1234',
-          userId: 'userid1234'
+          code: '51DF'
         }
       })
     ).toEqual({
       requesting: false,
       requested: true,
       data: {
-        token: 'token1234',
-        userId: 'userid1234'
+        code: '51DF'
       }
     })
   })
 
-  it('should handle LOGIN_ERROR', () => {
+  it('should handle ADD_SUMMONER_ERROR', () => {
     expect(
       reducer([], {
-        type: LOGIN_ERROR,
+        type: ADD_SUMMONER_ERROR,
         data: {
-          message: 'Email cannont be blank'
+          message: 'Summoner name cannot be blank'
         }
       })
     ).toEqual({
       requesting: false,
       error: {
-        message: 'Email cannont be blank'
+        message: 'Summoner name cannot be blank'
       }
     })
   })

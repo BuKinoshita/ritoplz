@@ -13,8 +13,8 @@ const initialState = {
   error: null
 }
 
-export default (state = initialState, action) => {
-  switch (action.type) {
+export default (state = initialState, { type, data }) => {
+  switch (type) {
     case RANKINGS_REQUEST:
       return {
         ...state,
@@ -26,14 +26,14 @@ export default (state = initialState, action) => {
         ...state,
         requesting: false,
         requested: true,
-        data: action.data
+        data
       }
 
     case RANKINGS_ERROR:
       return {
         ...state,
         requesting: false,
-        error: 'FUCK ME',
+        error: data,
         data: {summoners: []}
       }
 

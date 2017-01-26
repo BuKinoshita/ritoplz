@@ -13,25 +13,28 @@ const initialState = {
   error: null
 }
 
-export default (state = initialState, action) => {
-  switch (action.type) {
+export default (state = initialState, { type, data }) => {
+  switch (type) {
     case LOGIN_REQUEST:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         requesting: true
-      })
+      }
 
     case LOGIN_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         requesting: false,
         requested: true,
-        data: action.data
-      })
+        data
+      }
 
     case LOGIN_ERROR:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         requesting: false,
-        error: action.data
-      })
+        error: data
+      }
 
     default:
       return state

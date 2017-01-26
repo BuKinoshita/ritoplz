@@ -6,8 +6,8 @@ import Modal from 'react-modal'
 import { connect } from 'react-redux'
 import Alert from 'react-s-alert'
 
-import addSummoner from './../actions/add-summoner'
 import fetchAccount from '../actions/fetch-account'
+import addSummoner from './../actions/add-summoner'
 import { ADD_SUMMONER_SUCCESS, ADD_SUMMONER_ERROR } from './../constants'
 
 const styles = {
